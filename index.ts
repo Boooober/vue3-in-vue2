@@ -2,9 +2,13 @@ import { ComponentInternalInstance } from '@vue/runtime-core';
 import { createApp, getCurrentInstance, h, DefineComponent } from 'vue';
 import { Vue, CreateElement } from 'vue2/types/vue';
 
-export const vue3to2Adapter = (
+interface Hooks<T extends Record<string, unknown>> {
+  mounted?(this: T): unknown;
+}
+
+export const vue3to2Adapter = <T extends Record<string, unknown> = {}>(
   WrappedComponent: () => Promise<{ default: DefineComponent }>,
-  onMount?: () => unknown
+  hooks?: Hooks<T>
 ): any => ({
   data() {
     return {
@@ -22,8 +26,8 @@ export const vue3to2Adapter = (
       []
     );
   },
-  async mounted(this: Vue & { id: string }): Promise<void> {
-    onMount?.();
+  async mounted(this: T & Vue & { id: string }): Promise<void> {
+    hooks?.mounted?.call(this);
 
     const { default: Vue3Component } = await WrappedComponent();
 
@@ -48,5 +52,7 @@ export const vue3to2Adapter = (
   }
 });
 
-export const vue3to2AdapterSync = (Vue3Component: DefineComponent) =>
-  vue3to2Adapter(() => Promise.resolve({ default: Vue3Component }));
+export const vue3to2AdapterSync = <T extends Record<string, unknown> = {}>(
+  Vue3Component: DefineComponent,
+  hooks?: Hooks<T>
+) => vue3to2Adapter<T>(() => Promise.resolve({ default: Vue3Component }), hooks);

@@ -1,5 +1,5 @@
 import { createApp, getCurrentInstance, h } from 'vue';
-export const vue3to2Adapter = (WrappedComponent, onMount) => ({
+export const vue3to2Adapter = (WrappedComponent, hooks) => ({
     data() {
         return {
             id: `vue3-${Math.random().toString(32).slice(2)}`
@@ -13,7 +13,7 @@ export const vue3to2Adapter = (WrappedComponent, onMount) => ({
         }, []);
     },
     async mounted() {
-        onMount?.();
+        hooks?.mounted?.call(this);
         const { default: Vue3Component } = await WrappedComponent();
         let instance = null;
         const app = createApp({
@@ -30,4 +30,4 @@ export const vue3to2Adapter = (WrappedComponent, onMount) => ({
         this.$watch('$attrs', () => instance?.update(), { deep: true });
     }
 });
-export const vue3to2AdapterSync = (Vue3Component) => vue3to2Adapter(() => Promise.resolve({ default: Vue3Component }));
+export const vue3to2AdapterSync = (Vue3Component, hooks) => vue3to2Adapter(() => Promise.resolve({ default: Vue3Component }), hooks);

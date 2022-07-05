@@ -10,8 +10,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "peerDependencies": {
-    "vue": "^3.2.37",
-    "vue2": "npm:vue@^2.7.2"
+    "vue": "^3.2.x",
+    "vue2": "npm:vue@^2.7.x"
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.18.6",
