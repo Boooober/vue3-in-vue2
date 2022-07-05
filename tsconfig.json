@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "strict": true,
+    "strictNullChecks": true,
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "declaration": true,
+    "lib": ["esnext", "dom"]
+  },
+  "exclude": ["node_modules"]
+}

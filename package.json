@@ -1,0 +1,39 @@
+{
+  "name": "vue3-in-vue2",
+  "version": "1.0.0",
+  "author": "Mykyta Slobodian",
+  "description": "Use microfrontend vue3 components inside vue2 application",
+  "module": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "build": "rm -rf index.js index.d.ts && tsc --project tsconfig.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "peerDependencies": {
+    "vue": "^3.2.37",
+    "vue2": "npm:vue@^2.7.2"
+  },
+  "devDependencies": {
+    "@babel/preset-typescript": "^7.18.6",
+    "@typescript-eslint/eslint-plugin": "^5.30.5",
+    "@typescript-eslint/parser": "^5.30.5",
+    "eslint": "^8.19.0",
+    "eslint-plugin-import": "^2.26.0",
+    "prettier": "^2.7.1",
+    "typescript": "^4.7.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Boooober/vue3-in-vue2.git"
+  },
+  "license": "ISC",
+  "keywords": [
+    "vue2",
+    "vue3",
+    "microfrontend"
+  ],
+  "bugs": {
+    "url": "https://github.com/Boooober/vue3-in-vue2/issues"
+  },
+  "homepage": "https://github.com/Boooober/vue3-in-vue2#readme"
+}
